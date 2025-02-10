@@ -45,11 +45,61 @@ As detailed in the original project mod, add a resistor to enhance audio output 
 
 ## Installation
 
+Note: As time of writing, uploading the sketch works with Arduino 2.x.x., but uploading the SPIFFS data is only possible by using the ESP32fs Plugin in Arduino 1.x.x
+
+### Installing from source
+
 1. Clone the repository
 2. Install required libraries via Arduino IDE
-3. Upload code to ESP32 Cheap Yellow Display
-4. Set the wifi credentials with the onboard keyboard on screen and connect
-5. connect to the webserver from a browser and add radio stations
+3. Working Arduino IDE settings:
+
+| Board                                | ESP32 Dev Module            |
+|--------------------------------------|-----------------------------|
+| Port                                 | [Your Port]                 |
+| CPU Frequency                        | 240MHz (WiFi/BT)            |
+| Core Debug Level                     | None                        |
+| Erase All Flash Before Sketch Upload | Disabled                    |
+| Events Run On                        | Core 1                      |
+| Flash Frequency                      | 80MHz                       |
+| Flash Mode                           | QIO                         |
+| Flash Size                           | 4MB (32Mb)                  |
+| JTAG Adapter                         | Disabled                    |
+| Arduino Runs on                      | Core 1                      |
+| Partition Scheme                     | No OTA (2MB APP/2MB SPIFFS) |
+| PSRAM                                | Disabled                    |
+| Upload Speed                         | 460800                      |
+
+4. Upload code to ESP32 Cheap Yellow Display
+5. From here, use Arduino IDE 1.x.x, as the ESP32fs plugin was not supported in 2.x.x as time of writing
+6. Install the [ESP32fs-plugin](https://github.com/me-no-dev/arduino-esp32fs-plugin) in Arduino 1.x.x. as library from Github
+7. In the Arduino IDE, select Tools > ESP32 Sketch Data Upload
+8. Once the CYD started, connect to a wifi station, restart and connect to the webserver from a browser and add radio stations via http://device-ip (listed in the headline of the screen, once connected)
+
+### Installing from binary release
+
+1. Download latest release from the [releases page](https://github.com/mogrikid/PhilRadio/releases)
+2. Download [the esptool](https://github.com/espressif/esptool?tab=readme-ov-file) from Github
+3. Upload the release binary with the following command
+```bash 
+python3 esptool.py --chip esp32 \
+  --port [YOUR PORT]] \
+  --baud 115200 \
+  --before default_reset \
+  --after hard_reset \
+  write_flash \
+  -z \
+  --flash_mode dio \
+  --flash_freq 40m \
+  --flash_size detect \
+  0x1000 release/wifiRadio.ino.bootloader.bin \
+  0x8000 release/wifiRadio.ino.partitions.bin \
+  0x10000 release/wifiRadio.ino.bin
+```
+4. In Arduino 1.x.x (2.0 is currently not supported here), create a new project or clone this one
+5. Create a data folder inside that project, place the index.html from the release in that folder
+6. Install the [ESP32fs-plugin](https://github.com/me-no-dev/arduino-esp32fs-plugin) in Arduino 1.x.x. as library from Github
+7. In the Arduino IDE, select Tools > ESP32 Sketch Data Upload
+8. Once the CYD started, connect to a wifi station, restart and connect to the webserver from a browser and add radio stations via http://device-ip (listed in the headline of the screen, once connected)
 
 ## Web Interface
 Access the web configuration at http://device-ip to:
