@@ -61,8 +61,8 @@ Access the web configuration at http://device-ip to:
 Credits
 Inspired by and building upon the [ESP32 Cheap Yellow Display project](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display).
 
-## LIcense
+## License
 This project is licensed as MIT as per the [license file](https://github.com/mogrikid/PhilRadio/blob/Main/LICENSE)
 
 ## Final Note
-The code is far from perfect, but the UI works, the radio plays flawless for hours and maybe others can build upon it. 
+The code is far from perfect, but the UI works, the radio plays flawlessly for hours and maybe others can build upon it. 
