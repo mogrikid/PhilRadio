@@ -19,9 +19,12 @@ A DIY internet radio project using the ESP32 Cheap Yellow Display, transforming 
 
 - ESP32 Cheap Yellow Display
 - Old Philips radio (or similar)
-- 10kΩ potentiometer
-- External USB power connection
+- 10kΩ potentiometer (lower values will do)
+- [External USB power connection](https://www.amazon.de/dp/B0CPLRH4W6?ref=ppx_yo2ov_dt_b_fed_asin_title)
 - 10kΩ Resistor to [improve the audio quality](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/blob/main/Mods/README.md).
+
+## Schematic
+![Schematic](https://github.com/mogrikid/PhilRadio/blob/Main/images/schematic.png)
 
 ## Hardware Modifications
 ### Audio Quality Improvement
@@ -110,6 +113,12 @@ Access the web configuration at http://device-ip to:
 
 Credits
 Inspired by and building upon the [ESP32 Cheap Yellow Display project](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display).
+
+## Possible Future Extensions
+- [Add a battery to the radio](https://github.com/witnessmenow/ESP32-Cheap-Yellow-Display/discussions/87)
+- Implement OTA (Over The Air) programming functionality for the source code and the SPIFFS files OR
+- Add a routing for the programmable usb port to the outside
+- Integrating the [wifiManager library](https://github.com/tzapu/WiFiManager) to allow for wifi access via smartphone 
 
 ## License
 This project is licensed as MIT as per the [license file](https://github.com/mogrikid/PhilRadio/blob/Main/LICENSE)
